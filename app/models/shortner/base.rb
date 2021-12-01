@@ -1,6 +1,6 @@
 module Shortner
-  module Base
-    def initialize(url:)
+  class Base
+    def initialize(url)
       @url = url
     end
 
@@ -8,7 +8,7 @@ module Shortner
       raise NotImplementedError, 'implementer should specify how short url will be generated'
     end
 
-    private
+    protected
 
     attr_reader :url
   end
