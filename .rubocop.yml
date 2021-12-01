@@ -1,0 +1,60 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 3.0.2
+  NewCops: enable
+  Exclude:
+    - '**/bin/**/*'
+    - '**/tmp/**/*'
+    - '**/templates/**/*'
+    - '**/vendor/**/*'
+    - '**/node_modules/**/*'
+    - '**/app/views/**/*'
+    - '.pryrc'
+
+
+Style/RedundantArgument:
+  Enabled: false
+
+Style/StringLiterals:
+  Exclude:
+    - '**/db/migrate/*'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Rails/FilePath:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/MethodLength:
+  Exclude:
+    - '**/db/migrate/*'
+
+Layout/SpaceBeforeBlockBraces:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+RSpec/DescribedClass:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false
+
+RSpec/InstanceVariable:
+  Enabled: false
+
+RSpec/ImplicitSubject:
+  Enabled: false
+
+Rails/Delegate:
+  Enabled: false
