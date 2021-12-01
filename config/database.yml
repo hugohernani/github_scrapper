@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: <%= ENV.fetch('POSTGRES_HOST'){ "/var/run/postgresql" } %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV.fetch("POSTGRES_USER"){ "github_scrapper" } %>
+  password: <%= ENV.fetch("POSTGRES_PASSWORD"){ "github_scrapper" } %>
+
+development:
+  <<: *default
+  database: github_scrapper_development
+
+test:
+  <<: *default
+  database: github_scrapper_test
+
+production:
+  <<: *default
+  database: github_scrapper_production
+  username: <%= ENV.fetch("POSTGRES_USER", "github_scrapper") %>
+  password: <%= ENV.fetch("POSTGRES_PASSWORD", "github_scrapper") %>
