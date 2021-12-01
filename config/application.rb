@@ -30,6 +30,9 @@ module GithubScrapper
     config.generators do |g|
       g.test_framework :rspec
       g.system_tests = nil
+      g.helper false
+      g.assets false
+      g.view_specs false
     end
   end
 end
