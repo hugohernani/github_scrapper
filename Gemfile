@@ -23,7 +23,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'factory_bot_rails', '~> 6.2'
-gem 'faker', '~> 2.18'
+gem 'faker', '~> 2.19'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
