@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_03_023300) do
+ActiveRecord::Schema.define(version: 2021_12_03_024838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "github_profiles", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "username"
+    t.integer "followers"
+    t.integer "following"
+    t.integer "stars"
+    t.integer "contributions"
+    t.string "image_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_github_profiles_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -23,4 +36,5 @@ ActiveRecord::Schema.define(version: 2021_12_03_023300) do
     t.string "short_url"
   end
 
+  add_foreign_key "github_profiles", "users"
 end
