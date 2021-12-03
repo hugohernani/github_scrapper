@@ -58,10 +58,13 @@ group :development do
 end
 
 group :test do
+  gem 'capybara', '~> 3.36.0'
+  gem 'launchy', '~> 2.5.0'
   gem 'rspec-rails', '~> 5.0'
   gem 'shoulda-matchers', '~> 4.5'
   gem 'simplecov', '~> 0.21.2'
 
+  gem 'webdrivers', '~> 5.0.0'
   gem 'webmock', '~> 3.14.0'
 end
 

@@ -1,6 +1,6 @@
 module Github
   class UserRegistration
-    def initialize(github_user_form, link_shorten:, web_scrapper: WebScrapper::GithubProfile.new)
+    def initialize(github_user_form, link_shorten: Shortner::Bitly.new, web_scrapper: WebScrapper::GithubProfile.new)
       @github_user_form = github_user_form
       @link_shorten     = link_shorten
       @web_scrapper     = web_scrapper

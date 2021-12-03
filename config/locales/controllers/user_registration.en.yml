@@ -1,0 +1,4 @@
+en:
+  user_registration:
+    create:
+      success: User was sucessfully registered
