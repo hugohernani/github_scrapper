@@ -7,8 +7,8 @@ class UserRegistrationController < ApplicationController
     @form = GithubUserRegistrationForm.new(user_registration_params)
 
     if @form.valid?
-      Github::UserRegistration.new(@form).create
-      redirect_to new_user_registration_path, notice: t('.create') # TODO: FIX-ME
+      register_service.create
+      redirect_to user_path(register_service.user), notice: t('.create') # TODO: FIX-ME
     else
       render :new
     end
@@ -19,5 +19,9 @@ class UserRegistrationController < ApplicationController
   def user_registration_params
     params.require(:github_user_registration_form)
           .permit(:name, :url)
+  end
+
+  def register_service
+    @register_service ||= Github::UserRegistration.new(@form)
   end
 end

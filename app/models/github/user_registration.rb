@@ -1,5 +1,7 @@
 module Github
   class UserRegistration
+    attr_reader :user
+
     def initialize(github_user_form, link_shorten: Shortner::Bitly.new, web_scrapper: WebScrapper::GithubProfile.new)
       @github_user_form = github_user_form
       @link_shorten     = link_shorten
@@ -7,7 +9,7 @@ module Github
     end
 
     def create
-      user         = persist_user
+      @user        = persist_user
       short_url    = shorten_url
       profile_data = webscrap_github_profile_data
       persist_short_url_on_user(user.id, short_url)
