@@ -1,4 +1,4 @@
-class GithubUserRegistrationForm
+class UserForm
   include ActiveModel::Model
 
   attr_accessor :name, :url

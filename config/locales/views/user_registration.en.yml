@@ -2,3 +2,5 @@ en:
   user_registration:
     new:
       title: User Registration
+    show:
+      last_seen_at: Last Seen At %{last_seen_at}

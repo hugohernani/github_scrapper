@@ -1,9 +1,9 @@
-<%= form_with model: user_model, url: user_registration_index_path do |form| %>
+<%= form_with model: user_model, url: users_path do |form| %>
   <%= render 'layouts/errors', resource: user_model %>
 
   <div class='form-group row mb-2'>
     <div class='col-sm-12'>
-      <%= form.text_field :name, required: true, class: 'form-control', placeholder: t('helpers.label.github_user_registration_form.name') %>
+      <%= form.text_field :name, required: true, class: 'form-control', placeholder: t('helpers.label.user_form.name') %>
     </div>
   </div>
 

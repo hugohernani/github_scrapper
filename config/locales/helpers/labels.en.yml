@@ -1,6 +1,6 @@
 en:
   helpers:
     label:
-      github_user_registration_form:
+      user_form:
         name: Name
         url: URL

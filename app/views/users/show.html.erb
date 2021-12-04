@@ -1,0 +1,21 @@
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="<%= @user.github_image_url %>" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title"><%= @user.name %></h5>
+    <p class="card-text"><%= @user.github_username %></p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><%= @user.github_followers %></li>
+    <li class="list-group-item"><%= @user.github_following %></li>
+    <li class="list-group-item"><%= @user.github_stars %></li>
+    <li class="list-group-item"><%= @user.github_contributions %></li>
+  </ul>
+  <div class="card-body">
+    <a href="#" class="card-link"><%= @user.page_navigation.refresh_profile_page_url %></a>
+    <a href="#" class="card-link"><%= @user.page_navigation.update_page_url %></a>
+  </div>
+
+  <div class="card-footer">
+    <small class="text-muted"><%= @user.last_github_scrapping_update %></small>
+  </div>
+</div>

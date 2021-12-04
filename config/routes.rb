@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root to: 'homepage#index'
 
-  resources :user_registration, only: %i[new create]
-  resources :user, only: %i[show]
+  resources :users, except: %i[delete] do
+    post :github_scrapper, to: 'users/github_scrapper#create', on: :member
+  end
 end
