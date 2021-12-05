@@ -1,0 +1,4 @@
+en:
+  helpers:
+    github_profile:
+      null_counter: "%{counter_type} Not Found On Profile"
