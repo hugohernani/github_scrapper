@@ -34,6 +34,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    User.destroy(params[:id])
+
+    redirect_to root_path, notice: t('.create')
+  end
+
   private
 
   def user

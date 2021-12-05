@@ -3,7 +3,8 @@ class UserPresenter < BasePresenter
 
   delegate :name, :url, :short_url, to: :@user
   delegate :image_url, to: :@github_profile, prefix: :github
-  delegate :followers, :following, :stars, :contributions, to: :@github_profile_counter, prefix: :github
+  delegate :followers, :following, :stars, :contributions,
+           :organization, :localization, to: :@github_profile_counter, prefix: :github
 
   def initialize(db_user:)
     @user                   = db_user

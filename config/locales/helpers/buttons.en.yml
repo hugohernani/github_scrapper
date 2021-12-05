@@ -2,3 +2,6 @@ en:
   helpers:
     buttons:
       submit: Submit
+      edit: Edit
+      delete: Delete
+      syncronize: Syncronize

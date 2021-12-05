@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Users', type: :request, bitly_fake_response: true, github_fake_response: true do
+RSpec.describe 'Users', type: :request, **Utils.mocked_server_flags do
   include CustomMatchers::RequestResponse
 
   describe 'GET /show' do
@@ -11,16 +11,6 @@ RSpec.describe 'Users', type: :request, bitly_fake_response: true, github_fake_r
         get "/users/#{user.id}"
 
         expect(response).to have_responded_as(:success, on_view: :show, with_assigns: :user)
-      end
-    end
-
-    context 'when fails' do
-      let(:non_existent_user){ instance_double('User', id: 42) }
-
-      it 'returns not found result' do
-        get "/users/#{non_existent_user.id}"
-
-        expect(response).to have_responded_as(:not_found, redirect_path: root_path)
       end
     end
   end

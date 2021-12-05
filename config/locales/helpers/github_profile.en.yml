@@ -1,4 +1,4 @@
 en:
   helpers:
     github_profile:
-      null_counter: "%{counter_type} Not Found On Profile"
+      null_counter: "Missing %{counter_type}"
