@@ -4,8 +4,14 @@ module UserPresenters
       @github_profile = github_profile
     end
 
-    %i[followers following stars contributions organization localization].each do |counter_method|
+    %w[organization localization].each do |counter_method|
       define_method counter_method do
+        counter_message_for(counter_method)
+      end
+    end
+
+    %w[followers following stars contributions].each do |counter_method|
+      define_method "#{counter_method}_message" do
         counter_message_for(counter_method)
       end
     end
@@ -19,7 +25,7 @@ module UserPresenters
 
       return UserPresenters::NullGithubProfileCounter.new(counter_method) unless counter
 
-      h.t('users.show.github_counter_text', amount: counter, counter_type: counter_method)
+      h.t('users.show.github_counter_text', amount: counter, counter_type: counter_method.capitalize)
     end
   end
 end

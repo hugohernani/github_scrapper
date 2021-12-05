@@ -9,9 +9,9 @@ describe UserPresenters::GithubProfileCounter do
 
     it 'returns counter argument interpolated into a localized message' do
       value             = github_profile.send(counter_argument)
-      localized_message = I18n.t('users.show.github_counter_text', amount: value, counter_type: counter_argument)
+      localized_message = I18n.t('users.show.github_counter_text', amount: value, counter_type: counter_argument.capitalize)
 
-      expect(presenter.send(counter_argument)).to eq localized_message
+      expect(presenter.send("#{counter_argument}_message")).to eq localized_message
     end
   end
 
@@ -25,11 +25,11 @@ describe UserPresenters::GithubProfileCounter do
     end
   end
 
-  %i[followers following stars contributions].each do |counter_argument|
+  %w[followers following stars contributions].each do |counter_argument|
     it_behaves_like 'existing messaging counter profile', counter_argument
   end
 
-  %i[organization localization].each do |counter_argument|
+  %w[organization localization].each do |counter_argument|
     it_behaves_like 'non existing messaging counter profile', counter_argument
   end
 end

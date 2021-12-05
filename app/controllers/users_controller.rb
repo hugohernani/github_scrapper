@@ -1,4 +1,10 @@
 class UsersController < ApplicationController
+  def index
+    @users = User.all.map do |user|
+      UserPresenter.new(db_user: user)
+    end
+  end
+
   def new
     @form = UserForm.new
   end
