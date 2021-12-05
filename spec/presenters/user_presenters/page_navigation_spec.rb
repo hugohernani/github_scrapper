@@ -7,10 +7,14 @@ describe UserPresenters::PageNavigation do
 
   it 'returns url to refresh github data' do
     expected_url = "/users/#{db_user.id}/github_scrapper"
-    expect(presenter.refresh_profile_page_url).to eq(expected_url)
+    expect(presenter.refresh_profile_page_link).to eq(expected_url)
   end
 
-  it 'returns url to update user' do
-    expect(presenter.update_page_url).to eq("/users/#{db_user.id}")
+  it 'returns url to edit user' do
+    expect(presenter.edit_user_link).to eq("/users/#{db_user.id}/edit")
+  end
+
+  it 'returns url to access user' do
+    expect(presenter.user_link).to eq("/users/#{db_user.id}")
   end
 end

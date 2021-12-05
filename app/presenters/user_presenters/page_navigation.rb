@@ -4,11 +4,15 @@ module UserPresenters
       @user = db_user
     end
 
-    def refresh_profile_page_url
+    def refresh_profile_page_link
       github_scrapper_user_path(user)
     end
 
-    def update_page_url
+    def edit_user_link
+      edit_user_path(user)
+    end
+
+    def user_link
       user_path(user)
     end
 
