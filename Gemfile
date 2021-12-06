@@ -25,6 +25,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'factory_bot_rails', '~> 6.2'
 gem 'faker', '~> 2.19'
 
+gem 'ransack', '~> 2.4.2'
+
 gem 'sinatra', '~> 2.1.0'
 
 # Use Active Storage variant
