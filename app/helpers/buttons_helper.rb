@@ -12,7 +12,7 @@ module ButtonsHelper
   end
 
   def danger_button(text, url: '#', css_classes: [], alert_message: nil, **opts)
-    link_to(text, url, class: danger_button_css_classes(css_classes), data: {
+    link_to(text, url, class: danger_button_css_classes(css_classes), method: :delete, data: {
               confirm: alert_message
             }, **opts)
   end
