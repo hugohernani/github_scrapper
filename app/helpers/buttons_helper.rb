@@ -3,6 +3,10 @@ module ButtonsHelper
     link_to(text, url, class: primary_button_css_classes(css_classes), **opts)
   end
 
+  def submit_button(text, css_classes: [], **opts)
+    submit_tag(text, class: primary_button_css_classes(css_classes), **opts)
+  end
+
   def secondary_button(text, url: '#', css_classes: [], **opts)
     link_to(text, url, class: secondary_button_css_classes(css_classes), **opts)
   end

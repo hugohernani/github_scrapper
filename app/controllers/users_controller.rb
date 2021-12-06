@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all.map do |user|
-      UserPresenter.new(db_user: user)
-    end
+    database_users = User.with_github_profile
+    @users         = UsersContainerPresenter.new(database_users)
+                                            .search(search_query: params[:q])
   end
 
   def new

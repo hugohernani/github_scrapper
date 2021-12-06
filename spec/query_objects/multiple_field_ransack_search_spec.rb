@@ -13,13 +13,13 @@ describe MultipleFieldRansackSearch do
     let(:query){ 'jack' }
 
     it 'finds users when matching either name or url' do
-      result = query_object.search(query, fields: %i[name url]).result
+      result = query_object.search(query, fields: %i[name url])
 
       expect(result).to include(user1, user2)
     end
 
     it 'does not return non matching user using either name or url' do
-      result = query_object.search(query, fields: %i[name url]).result
+      result = query_object.search(query, fields: %i[name url])
 
       expect(result).not_to include(user3)
     end
@@ -36,7 +36,7 @@ describe MultipleFieldRansackSearch do
     it 'finds users when matching any one of github profile attributes' do
       result = query_object.search(query,
                                    fields: %i[github_profile_username github_profile_localization
-                                              github_profile_organization]).result
+                                              github_profile_organization])
 
       found_users = [profile1, profile2, profile3].map(&:user)
 
@@ -46,7 +46,7 @@ describe MultipleFieldRansackSearch do
     it 'does not return non matching user if it does not match any one of github profile attributes' do
       result = query_object.search(query,
                                    fields: %i[github_profile_username github_profile_localization
-                                              github_profile_organization]).result
+                                              github_profile_organization])
 
       expect(result).not_to include(profile4.user)
     end
