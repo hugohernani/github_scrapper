@@ -1,0 +1,38 @@
+<table class="users-listing table table-bordered table-responsive table-hover mt-3">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Username</th>
+      <th scope="col">Followers</th>
+      <th scope="col">Following</th>
+      <th scope="col">Stars</th>
+      <th scope="col">Contributions</th>
+      <th scope="col">Organization</th>
+      <th scope="col">Localization</th>
+      <th scope="col">Short URL</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.each do |user| %>
+      <tr id="<%= user.id %>">
+        <td><%= user.id %></td>
+        <td><%= user.name %></th>
+        <td><%= user.github_username %></td>
+        <td><%= user.github_followers %></td>
+        <td><%= user.github_following %></td>
+        <td><%= user.github_stars %></td>
+        <td><%= user.github_contributions %></td>
+        <td><%= user.github_organization %></td>
+        <td><%= user.github_localization %></td>
+        <td><%= link_to user.short_url, user.short_url %></td>
+        <td class='actions d-flex'>
+          <%= primary_button(t('helpers.buttons.show'), url: user.page_navigation.user_link, css_classes: ['action-margin-link']) %>
+          <%= secondary_button(t('helpers.buttons.edit'), url: user.page_navigation.edit_user_link, css_classes: ['action-margin-link']) %>
+          <%= danger_button(t('helpers.buttons.delete'), url: user.page_navigation.user_link, css_classes: ['action-margin-link'], alert_message: t('helpers.messages.confirm_question')) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

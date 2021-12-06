@@ -1,0 +1,11 @@
+en:
+  users:
+    new:
+      title: User Registration
+    show:
+      github_profile: Github Profile
+      github_profile_details: Github Profile Details
+      github_username: "%{username} (Username)"
+      github_counter_text: "%{amount} %{counter_type}"
+      last_updated_at: "%{last_update} (Last Updated)"
+      last_syncronized_at: "%{last_update} (Last Syncronized)"

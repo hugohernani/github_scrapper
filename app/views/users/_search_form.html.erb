@@ -1,0 +1,6 @@
+<nav class="navbar navbar-light bg-light d-flex justify-content-end align-self-end">
+  <%= form_with url: users.search_link, class: 'form-inline d-flex', method: :get do |f| %>
+    <%= f.text_field :q, value: users.search_query %>
+    <%= submit_button(t('helpers.buttons.submit')) %>
+  <% end %>
+</nav>

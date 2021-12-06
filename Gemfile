@@ -25,6 +25,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'factory_bot_rails', '~> 6.2'
 gem 'faker', '~> 2.19'
 
+gem 'ransack', '~> 2.4.2'
+
 gem 'sinatra', '~> 2.1.0'
 
 # Use Active Storage variant
@@ -58,10 +60,14 @@ group :development do
 end
 
 group :test do
-  gem 'rspec-rails', '~> 5.0'
+  gem 'capybara', '~> 3.36.0'
+  gem 'launchy', '~> 2.5.0'
+  gem 'rails-controller-testing', '1.0.5'
+  gem 'rspec-rails', '~> 5.0.2'
   gem 'shoulda-matchers', '~> 4.5'
   gem 'simplecov', '~> 0.21.2'
 
+  gem 'webdrivers', '~> 5.0.0'
   gem 'webmock', '~> 3.14.0'
 end
 

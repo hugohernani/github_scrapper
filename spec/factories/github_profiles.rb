@@ -7,5 +7,7 @@ FactoryBot.define do
     stars { Faker::Number.between(from: 1, to: 100) }
     contributions { Faker::Number.between(from: 1, to: 10_000) }
     image_url { Faker::Avatar.image }
+    organization { Faker::Company.name }
+    localization { Faker::Address.country }
   end
 end

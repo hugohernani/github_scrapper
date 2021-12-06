@@ -32,7 +32,7 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include ActiveJob::TestHelper, type: :job
 
-  config.before do |example|
-    stub_request(:any, /github.com/).to_rack(FakeGitHub) if example.metadata[:github_fake_response]
+  config.before(type: :system) do
+    driven_by(:selenium_chrome_headless)
   end
 end

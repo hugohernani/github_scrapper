@@ -7,7 +7,7 @@ describe Github::UserRegistration, github_fake_response: true do
   let(:mocked_shorten_link){ double(:mocked_shorten_link, generate: fake_short_url) }
 
   let(:user_form) do
-    GithubUserRegistrationForm.new(
+    UserForm.new(
       name: 'Jack Sparrow', url: 'http://github.com/hugohernani'
     )
   end
