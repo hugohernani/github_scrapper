@@ -1,6 +1,6 @@
 require 'sinatra/base'
 
-class FakeBitly < Sinatra::Base
+class FakeBitlyServer < Sinatra::Base
   post '/v4/shorten' do
     bitly_link_response 200, 'bitly_create_link_response.json'
   end
