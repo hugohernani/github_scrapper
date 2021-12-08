@@ -2,6 +2,8 @@ en:
   users:
     new:
       title: User Registration
+    edit:
+      title: Edit User
     show:
       github_profile: Github Profile
       github_profile_details: Github Profile Details

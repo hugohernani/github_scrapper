@@ -21,16 +21,17 @@ class UsersController < ApplicationController
   end
 
   def show
-    db_user = User.find(params[:id])
-    @user   = UserPresenter.new(db_user: db_user)
+    @user   = UserPresenter.new(db_user: find_user)
   end
 
   def edit
-    @form = UserForm.new
+    @user = UserPresenter.new(db_user: find_user)
+    @form = UserForm.new(name: @user.name, url: @user.url)
   end
 
   def update
     @form = UserForm.new(user_form_params)
+    user  = find_user
 
     if @form.valid?
       User.update_from_form(user, user_form_params)
@@ -48,8 +49,8 @@ class UsersController < ApplicationController
 
   private
 
-  def user
-    @user ||= User.find(params[:id])
+  def find_user
+    User.find(params[:id])
   end
 
   def user_form_params

@@ -1,9 +1,9 @@
-<%= form_with model: user_model, url: users_path do |form| %>
-  <%= render 'layouts/errors', resource: user_model %>
-
+<%= turbo_frame_tag "user_#{@user.id}" do %>
+<%= form_with model: user_form, url: users_path do |form| %>
+  <%= render 'layouts/errors', resource: user_form %>
   <div class='form-group row mb-2'>
     <div class='col-sm-12'>
-      <%= form.text_field :name, required: true, class: 'form-control', placeholder: t('helpers.label.user_form.name') %>
+      <%= form.text_field :name, required: true, class: 'form-control', placeholder: t('helpers.label.user_form.name'), value: form.object.name %>
     </div>
   </div>
 
@@ -18,6 +18,8 @@
   </div>
 
   <div class='actions text-center mt-3'>
-    <%= form.submit t('helpers.buttons.submit'), class: 'btn btn-primary btn-lg btn-block' %>
+    <%= back_button(I18n.t('helpers.buttons.back'), data: { turbo_frame: '_top' }) %>
+    <%= form.submit t('helpers.buttons.update'), class: 'btn btn-primary btn-block' %>
   </div>
+  <% end %>
 <% end %>

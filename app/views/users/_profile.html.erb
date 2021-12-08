@@ -1,0 +1,21 @@
+<div class="card text-center">
+  <img class="card-img-top img-thumbnail profile-image mt-2" src="<%= user.github_image_url %>" width="50" height="200" alt="Card image cap">
+  <%= turbo_frame_tag "user_#{user.id}", class: "card-body" do %>
+  <h1 class="card-title"><%= user.name %></h1>
+  <div class='profile-links d-inline-flex flex-column'>
+    <%= primary_button(t('.github_profile'), url: user.url) %>
+    <%= link_to user.short_url, user.short_url, class: 'card-link' %>
+  </div>
+<% end %>
+<div class='card-footer d-flex justify-content-center align-items-center flex-column'>
+  <div class='actions'>
+    <%= secondary_button(t('helpers.buttons.edit'), url: user.page_navigation.edit_user_link, css_classes: ['card-link'],
+                                                    data: {
+                                                      turbo_frame: "user_#{user.id}",
+                                                      disable_with: t('helpers.messages.editing')
+                                                    }) %>
+    <%= danger_button(t('helpers.buttons.delete'), url: user.page_navigation.user_link, css_classes: ['card-link'], alert_message: t('helpers.messages.confirm_question')) %>
+  </div>
+  <small class="text-muted mt-3"><%= user.last_updated_at %></small>
+</div>
+</div>
