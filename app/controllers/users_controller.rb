@@ -59,6 +59,10 @@ class UsersController < ApplicationController
   end
 
   def user_registration_service
-    Github::UserRegistration.new(@form)
+    Github::UserRegistration.new(@form, link_shorten: shortner)
+  end
+
+  def shortner
+    ENV['USE_FAKE_BITLY'] ? Shortner::Bitly.new : Shortner::FakeBitly.new
   end
 end
