@@ -6,7 +6,7 @@ describe 'User Registration', type: :feature, **Utils.mocked_server_flags do
 
     Forms::UserFullfillment.new(self).fill_form
 
-    click_button I18n.t('helpers.buttons.submit')
+    click_button I18n.t('helpers.buttons.update')
 
     expect(page).to have_text(I18n.t('users.create.success'))
   end
