@@ -1,25 +1,25 @@
-<%= turbo_frame_tag "user_#{@user.id}" do %>
-<%= form_with model: user_form, url: users_path do |form| %>
-  <%= render 'layouts/errors', resource: user_form %>
-  <div class='form-group row mb-2'>
-    <div class='col-sm-12'>
-      <%= form.text_field :name, required: true, class: 'form-control', placeholder: t('helpers.label.user_form.name'), value: form.object.name %>
+<%= turbo_frame_tag "user_form" do %>
+  <%= form_with model: user_form, url: users_path do |form| %>
+    <%= render 'layouts/errors', resource: user_form %>
+    <div class='form-group row mb-2'>
+      <div class='col-sm-12'>
+        <%= form.text_field :name, required: true, class: 'form-control', placeholder: t('helpers.label.user_form.name') %>
+      </div>
     </div>
-  </div>
 
-  <div class='form-group row'>
-    <div class='col-sm-12'>
-      <%= form.text_field :url, type: 'url', class: 'form-control',
-                          placeholder: "https://example.com", pattern: 'https?://github.com\/.*',
-                          oninvalid:"this.setCustomValidity('Enter Github Profile Url Here')",
-                          oninput:"this.setCustomValidity('')",
-                          required: true %>
+    <div class='form-group row'>
+      <div class='col-sm-12'>
+        <%= form.text_field :url, type: 'url', class: 'form-control',
+                            placeholder: "https://example.com", pattern: 'https?://github.com\/.*',
+                            oninvalid:"this.setCustomValidity('Enter Github Profile Url Here')",
+                            oninput:"this.setCustomValidity('')",
+                            required: true %>
+      </div>
     </div>
-  </div>
 
-  <div class='actions text-center mt-3'>
-    <%= back_button(I18n.t('helpers.buttons.back'), data: { turbo_frame: '_top' }) %>
-    <%= form.submit t('helpers.buttons.update'), class: 'btn btn-primary btn-block' %>
-  </div>
+    <div class='actions text-center mt-3'>
+      <%= back_button(I18n.t('helpers.buttons.back'), data: { turbo_frame: '_top' }) %>
+      <%= form.submit t('helpers.buttons.update'), class: 'btn btn-primary btn-block' %>
+    </div>
   <% end %>
 <% end %>

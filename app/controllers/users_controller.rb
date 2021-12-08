@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 
   def create
     @form = UserForm.new(user_form_params)
+    register_service = user_registration_service
 
     if @form.valid?
       register_service.create
@@ -25,8 +26,8 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = UserPresenter.new(db_user: find_user)
-    @form = UserForm.new(name: @user.name, url: @user.url)
+    user  = find_user
+    @form = UserForm.new(name: user.name, url: user.url)
   end
 
   def update
@@ -57,7 +58,7 @@ class UsersController < ApplicationController
     params.require(:user_form).permit(:name, :url)
   end
 
-  def register_service
-    @register_service ||= Github::UserRegistration.new(@form)
+  def user_registration_service
+    Github::UserRegistration.new(@form)
   end
 end
