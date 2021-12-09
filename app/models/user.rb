@@ -17,7 +17,9 @@ class User < ApplicationRecord
       following: profile.following,
       stars: profile.stars,
       contributions: profile.contributions,
-      image_url: profile.image_url
+      image_url: profile.image_url,
+      organization: profile.organization,
+      localization: profile.localization
     )
   end
 end

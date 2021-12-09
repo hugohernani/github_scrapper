@@ -1,8 +1,8 @@
 module WebScrapper
   class GithubProfile
     def initialize(crawler: FaradayCrawler.new, parser: NokogiriProfileParser.new)
-      @crawler   = crawler
-      @parser    = parser
+      @crawler = crawler
+      @parser  = parser
     end
 
     def load_data(url:)
