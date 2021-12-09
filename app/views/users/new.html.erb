@@ -1,0 +1,8 @@
+<div class='user-registration-container mt-3'>
+  <div class="card">
+    <h3 class="card-title text-center"><%= t('.title') %></h3>
+    <div class="card-body">
+      <%= render 'users/form', user_form: @form, user_submit_path: @user.page_navigation.users_link, submit_method: :post, turbo_enabled: false %>
+    </div>
+  </div>
+</div>

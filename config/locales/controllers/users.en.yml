@@ -1,0 +1,8 @@
+en:
+  users:
+    create:
+      success: User was successfully registered
+    update:
+      success: User was successfully updated
+    destroy:
+      success: User was successfully deleted

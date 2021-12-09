@@ -1,0 +1,5 @@
+en:
+  helpers:
+    messages:
+      confirm_question: Are you sure?
+      editing: Editing

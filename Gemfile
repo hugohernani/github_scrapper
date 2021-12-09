@@ -13,17 +13,21 @@ gem 'puma', '~> 5.0'
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 5.0'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
+gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'factory_bot_rails', '~> 6.2'
-gem 'faker', '~> 2.18'
+gem 'faker', '~> 2.19'
+
+gem 'hotwire-rails', '~> 0.1.3'
+
+gem 'ransack', '~> 2.4.2'
+
+gem 'sinatra', '~> 2.1.0'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -56,10 +60,18 @@ group :development do
 end
 
 group :test do
-  gem 'rspec-rails', '~> 5.0'
+  gem 'capybara', '~> 3.36.0'
+  gem 'launchy', '~> 2.5.0'
+  gem 'rails-controller-testing', '1.0.5'
+  gem 'rspec-rails', '~> 5.0.2'
   gem 'shoulda-matchers', '~> 4.5'
   gem 'simplecov', '~> 0.21.2'
+
+  gem 'webdrivers', '~> 5.0.0'
+  gem 'webmock', '~> 3.14.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
+gem 'bitly', '~> 2.0'

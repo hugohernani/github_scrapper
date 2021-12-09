@@ -1,0 +1,10 @@
+en:
+  helpers:
+    buttons:
+      back: Back
+      update: Update
+      submit: Submit
+      show: Show
+      edit: Edit
+      delete: Delete
+      syncronize: Syncronize
