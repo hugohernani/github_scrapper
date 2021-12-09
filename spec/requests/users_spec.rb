@@ -44,7 +44,7 @@ RSpec.describe 'Users', type: :request, **Utils.mocked_server_flags do
       it 'redirects to user page' do
         post '/users', params: { user_form: invalid_user_form }
 
-        expect(response).to have_responded_as(:success, on_view: :new, with_assigns: :form)
+        expect(response).to have_responded_as(:success, on_view: :new, with_assigns: %i[form user])
       end
     end
   end

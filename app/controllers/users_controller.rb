@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   end
 
   def new
+    @user = UserPresenter.new(db_user: User.new)
     @form = UserForm.new
   end
 
@@ -15,8 +16,9 @@ class UsersController < ApplicationController
 
     if @form.valid?
       register_service.create
-      redirect_to user_path(register_service.user), notice: t('.create')
+      redirect_to user_path(register_service.user), notice: t('.success')
     else
+      @user = UserPresenter.new(db_user: User.new)
       render :new
     end
   end
@@ -26,8 +28,8 @@ class UsersController < ApplicationController
   end
 
   def edit
-    user  = find_user
-    @form = UserForm.new(name: user.name, url: user.url)
+    @user = UserPresenter.new(db_user: find_user)
+    @form = UserForm.new(name: @user.name, url: @user.url)
   end
 
   def update
@@ -35,8 +37,8 @@ class UsersController < ApplicationController
     user  = find_user
 
     if @form.valid?
-      User.update_from_form(user, user_form_params)
-      redirect_to user_path(user), notice: t('.create')
+      user_update_service(user, @form).update
+      redirect_to user_path(user), notice: t('.success')
     else
       render :new
     end
@@ -45,7 +47,7 @@ class UsersController < ApplicationController
   def destroy
     User.destroy(params[:id])
 
-    redirect_to root_path, notice: t('.create')
+    redirect_to root_path, notice: t('.success')
   end
 
   private
@@ -62,7 +64,11 @@ class UsersController < ApplicationController
     Github::UserRegistration.new(@form, link_shorten: shortner)
   end
 
+  def user_update_service(user, form)
+    Github::UserUpdate.new(form, user: user, link_shorten: shortner)
+  end
+
   def shortner
-    ENV['USE_FAKE_BITLY'] ? Shortner::Bitly.new : Shortner::FakeBitly.new
+    ENV['USE_FAKE_BITLY'] ? Shortner::FakeBitly.new : Shortner::Bitly.new
   end
 end

@@ -30,8 +30,10 @@ module WebScrapper
     end
 
     def extract_organization(node)
-      organiation_element = node.at_css("div.js-profile-editable-replace a[data-hovercard-type='organization']")
-      organiation_element ? organiation_element['aria-label'] : nil
+      organization_element = node.at_css("div.js-profile-editable-replace a[data-hovercard-type='organization']")
+      return if organization_element.blank?
+
+      organization_element.text.scan(/\w+/).join
     end
 
     def extract_localization(node)

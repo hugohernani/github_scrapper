@@ -2,7 +2,7 @@
   <div class="card">
     <h3 class="card-title text-center"><%= t('.title') %></h5>
     <div class="card-body">
-      <%= render 'users/form', user_form: @form %>
+      <%= render 'users/form', user_form: @form, user_submit_path: @user.page_navigation.user_link, submit_method: :put, turbo_enabled: true %>
     </div>
   </div>
 </div>

@@ -8,6 +8,10 @@ module UserPresenters
       github_scrapper_user_path(user)
     end
 
+    def users_link
+      users_path
+    end
+
     def edit_user_link
       edit_user_path(user)
     end
