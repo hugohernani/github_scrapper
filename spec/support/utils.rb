@@ -5,4 +5,9 @@ module Utils
       bitly_fake_response: true
     }
   end
+
+  def self.fixture_file(path)
+    file_path = Rails.root.join('spec', 'fixtures', path)
+    File.read(file_path)
+  end
 end

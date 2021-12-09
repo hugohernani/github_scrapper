@@ -38,8 +38,7 @@ module CustomMatchers
     matcher :have_table_row_with_primary_info do |given_user|
       match do |page|
         have_row(table_row(page)) &&
-          have_name(table_row(page), given_user.name) &&
-          have_github_url(table_row(page), given_user.short_url)
+          have_name(table_row(page), given_user.name)
       end
 
       define_method :table_row do |page|
@@ -52,10 +51,6 @@ module CustomMatchers
 
       def have_name(table_row, name)
         expect(table_row).to have_text(name)
-      end
-
-      def have_github_url(table_row, url)
-        expect(table_row).to have_link(url, href: url)
       end
     end
 

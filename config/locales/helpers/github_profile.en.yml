@@ -1,4 +1,4 @@
 en:
   helpers:
     github_profile:
-      null_counter: "Missing %{counter_type}"
+      null_property: "Missing %{property_type}"

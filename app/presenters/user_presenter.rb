@@ -5,13 +5,13 @@ class UserPresenter < BasePresenter
   delegate :followers, :following, :stars, :contributions, :username,
            :organization, :localization, :image_url, to: :@github_profile, prefix: :github
   delegate :followers_message, :following_message, :stars_message, :contributions_message,
-           :organization, :localization, to: :@github_profile_counter, prefix: :github
+           :organization, :localization, to: :@github_profile_property, prefix: :github
 
   def initialize(db_user:)
-    @user                   = db_user
-    @github_profile         = @user.github_profile
-    @page_navigation        = UserPresenters::PageNavigation.new(db_user: db_user)
-    @github_profile_counter = UserPresenters::GithubProfileCounter.new(github_profile: @github_profile)
+    @user                    = db_user
+    @github_profile          = @user&.github_profile
+    @page_navigation         = UserPresenters::PageNavigation.new(db_user: db_user)
+    @github_profile_property = UserPresenters::GithubProfileProperty.new(github_profile: @github_profile)
   end
 
   def github_username_message

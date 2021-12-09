@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 
-describe UserPresenters::GithubProfileCounter do
+describe UserPresenters::GithubProfileProperty do
   subject(:presenter){ described_class.new(github_profile: github_profile) }
 
   shared_examples 'existing messaging counter profile' do |counter_argument|
@@ -19,7 +19,7 @@ describe UserPresenters::GithubProfileCounter do
     let(:github_profile){ build(:github_profile, "#{counter_argument}": nil) }
 
     it 'delegates message rendering to null object' do
-      expect(UserPresenters::NullGithubProfileCounter).to receive(:new).with(counter_argument)
+      expect(UserPresenters::NullGithubProfileProperty).to receive(:new).with(counter_argument)
 
       presenter.send(counter_argument)
     end

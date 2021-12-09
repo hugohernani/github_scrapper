@@ -1,4 +1,4 @@
-<div class="card-group mt-3">
+<%= turbo_frame_tag "user_details", class: "card-group mt-3" do %>
   <%= render 'users/profile', user: @user %>
   <div class="card">
     <div class="card-body">
@@ -22,4 +22,4 @@
       <small class="text-muted mt-3"><%= @user.last_github_scrapping_update %></small>
     </div>
   </div>
-</div>
+<% end %>
