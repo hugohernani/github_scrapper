@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   def destroy
     User.destroy(params[:id])
 
-    redirect_to root_path, notice: t('.success')
+    redirect_to users_path, notice: t('.success')
   end
 
   private

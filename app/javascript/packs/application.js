@@ -6,14 +6,18 @@
 const importAll = (r) => r.keys().forEach(r);
 
 
-import 'bootstrap'
 import Rails from "@rails/ujs"
 import "@hotwired/turbo-rails"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-import "controllers"
+
+import 'bootstrap/js/src/alert'
 
 importAll(require.context('../stylesheets/', true, /\.scss$/));
 
 Rails.start()
 ActiveStorage.start()
+
+import './main';
+
+window.$ = window.jQuery = $
