@@ -1,19 +1,21 @@
 module Github
   class UserRegistration
     include Github::UserScrappingEnqueuer
+    include ::SubscriptionListener
 
     attr_reader :user
 
     def initialize(user_form,
                    link_shorten: Shortner::Bitly.new,
                    web_scrapper: WebScrapper::GithubProfile.new)
-      @user_form = user_form
-      @link_shorten     = link_shorten
-      @web_scrapper     = web_scrapper
+      @user_form    = user_form
+      @link_shorten = link_shorten
+      @web_scrapper = web_scrapper
     end
 
-    def create
+    def create(listeners: [])
       @user = persist_user
+      subscribe(listeners: listeners, on_publisher: User)
       enqueue_default_scrapping(link_shorten: link_shorten, web_scrapper: web_scrapper,
                                 target_url: user_form.url, user_id: @user.id)
     end
@@ -27,6 +29,12 @@ module Github
         name: user_form.name,
         url: user_form.url
       )
+    end
+
+    def subscribe_listeners(user)
+      listeners.each do |listener|
+        user.subscribe(listener)
+      end
     end
   end
 end

@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     register_service = user_registration_service
 
     if @form.valid?
-      register_service.create
+      register_service.create(listeners: ::Users::TurboBroadcasting.new)
       redirect_to user_path(register_service.user), notice: t('.success')
     else
       @user = UserPresenter.new(db_user: User.new)

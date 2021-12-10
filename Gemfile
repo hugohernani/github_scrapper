@@ -39,6 +39,8 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'sidekiq', '~> 6.3'
 
+gem 'wisper', '~> 2.0'
+
 group :development, :test do
   gem 'dotenv-rails', '2.7.6'
 
