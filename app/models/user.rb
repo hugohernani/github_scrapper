@@ -2,25 +2,30 @@ class User < ApplicationRecord
   include RansackObjectForLowercase
 
   EVENTS = {
+    'registered' => 'user_registered',
     'updated' => 'user_updated',
     'profile_updated' => 'user_profile_updated'
-  }
+  }.freeze
 
   has_one :github_profile, class_name: 'GithubProfile', dependent: :destroy
 
+  default_scope ->{ order(created_at: :desc) }
   scope :with_github_profile, ->{ includes(:github_profile) }
 
   class << self
     include Wisper::Publisher
+
+    def persist(form_model)
+      create(name: form_model.name, url: form_model.url)
+    end
+
     def add_short_url(user_id:, short_url:)
       user = find(user_id)
       broadcast(User::EVENTS['updated'], user: user) if user.update(short_url: short_url)
     end
 
     def update_from_form(user, form_model)
-      if user.update(name: form_model.name, url: form_model.url)
-        broadcast(User::EVENTS['updated'], user: user)
-      end
+      broadcast(User::EVENTS['updated'], user: user) if user.update(name: form_model.name, url: form_model.url)
     end
 
     def persist_github_profile(user_id:, profile:)

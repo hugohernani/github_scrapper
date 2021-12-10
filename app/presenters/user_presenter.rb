@@ -1,7 +1,7 @@
 class UserPresenter < BasePresenter
   attr_accessor :page_navigation
 
-  delegate :id, :name, :url, :short_url, to: :@user
+  delegate :id, :name, :url, :short_url, :to_gid_param, to: :@user
   delegate :followers, :following, :stars, :contributions, :username,
            :organization, :localization, :image_url, to: :@github_profile, prefix: :github, allow_nil: true
   delegate :followers_message, :following_message, :stars_message, :contributions_message,
@@ -15,7 +15,7 @@ class UserPresenter < BasePresenter
   end
 
   def github_username_message
-    return UserPresenters::NullProperty.new("username") unless github_profile
+    return UserPresenters::NullProperty.new('username') unless github_profile
 
     h.t('users.show.github_username', username: github_profile&.username)
   end

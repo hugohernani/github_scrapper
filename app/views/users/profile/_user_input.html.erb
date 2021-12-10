@@ -1,0 +1,7 @@
+<%= turbo_frame_tag "user_input", class: "card-body" do %>
+  <h1 class="card-title"><%= user.name %></h1>
+  <div class='profile-links d-inline-flex flex-column'>
+    <%= primary_button(t('.github_profile'), url: user.url) %>
+    <%= link_to_if user.short_url, user.short_url, user.short_url, class: 'card-link' %>
+  </div>
+<% end %>

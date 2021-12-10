@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
   def index
-    database_users = User.with_github_profile
-    @users         = UsersContainerPresenter.new(database_users)
-                                            .search(search_query: params[:q])
+    @users = UsersContainerPresenter.new(User.with_github_profile)
+                                    .search(search_query: params[:q])
   end
 
   def new

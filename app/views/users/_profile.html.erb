@@ -1,24 +1,18 @@
-<div class="card text-center">
+<%= turbo_frame_tag "user_profile", class: "card text-center" do %>
   <%= image_tag user.github_image_url, class: 'card-img-top img-thumbnail profile-image mt-2',
                 width: 50, height: 200, alt: t('users.show.profile_image') if user.github_image_url %>
   <div class='card-body'>
-    <%= turbo_frame_tag "user_form", class: "card-body" do %>
-      <h1 class="card-title"><%= user.name %></h1>
-      <div class='profile-links d-inline-flex flex-column'>
-        <%= primary_button(t('.github_profile'), url: user.url) %>
-        <%= link_to_if user.short_url, user.short_url, user.short_url, class: 'card-link' %>
-      </div>
-    <% end %>
+    <%= render 'users/profile/user_input', user: user %>
   </div>
   <div class='card-footer d-flex justify-content-center align-items-center flex-column'>
     <div class='actions'>
       <%= secondary_button(t('helpers.buttons.edit'), url: user.page_navigation.edit_user_link, css_classes: ['card-link'],
                                                       data: {
-                                                        turbo_frame: "user_form",
+                                                        turbo_frame: "user_input",
                                                         disable_with: t('helpers.messages.editing')
                                                       }) %>
       <%= danger_button(t('helpers.buttons.delete'), url: user.page_navigation.user_link, css_classes: ['card-link'], alert_message: t('helpers.messages.confirm_question')) %>
     </div>
     <small class="text-muted mt-3"><%= user.last_updated_at %></small>
   </div>
-</div>
+<% end %>

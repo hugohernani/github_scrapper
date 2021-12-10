@@ -25,10 +25,7 @@ module Github
     attr_reader :user_form, :link_shorten, :web_scrapper
 
     def persist_user
-      User.create(
-        name: user_form.name,
-        url: user_form.url
-      )
+      User.persist(user_form)
     end
 
     def subscribe_listeners(user)
