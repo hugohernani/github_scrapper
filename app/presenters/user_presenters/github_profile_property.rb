@@ -29,9 +29,9 @@ module UserPresenters
     end
 
     def message_for(github_propery_name, message_path)
-      profile_value = github_profile.send(github_propery_name)
+      profile_value = github_profile&.send(github_propery_name)
 
-      return UserPresenters::NullGithubProfileProperty.new(github_propery_name) unless profile_value
+      return UserPresenters::NullProperty.new(github_propery_name) unless profile_value
 
       h.t(message_path, value: profile_value, type: github_propery_name.capitalize)
     end

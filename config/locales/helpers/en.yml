@@ -1,0 +1,3 @@
+en:
+  helpers:
+    null_property: "Missing %{property_type}"

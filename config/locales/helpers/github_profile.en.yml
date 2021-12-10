@@ -1,4 +1,0 @@
-en:
-  helpers:
-    github_profile:
-      null_property: "Missing %{property_type}"
