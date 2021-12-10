@@ -11,10 +11,11 @@ module Github
     end
 
     def create
-      @user     = persist_user
-      short_url = shorten_url
-      persist_short_url_on_user(@user.id, short_url)
-      webscrap_github_profile(@user.id)
+      @user = persist_user
+      UserScrappingFacade.new(
+        link_shorten: link_shorten,
+        web_scrapper: web_scrapper
+      ).perform(target_url: github_user_form.url, user_id: @user.id)
     end
 
     private
@@ -27,20 +28,5 @@ module Github
         url: github_user_form.url
       )
     end
-
-    def shorten_url
-      link_shorten.generate(url: github_user_form.url)
-    end
-
-    def persist_short_url_on_user(user_id, short_url)
-      User.add_short_url(user_id: user_id, short_url: short_url)
-    end
-
-    def webscrap_github_profile(user_id)
-      WebScrapper::GithubProfileLoader
-        .new(user_id: user_id, web_scrapper: web_scrapper)
-        .load_onto_user(url: github_user_form.url)
-    end
-
   end
 end
