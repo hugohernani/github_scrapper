@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Github::UserScrappingFacade do
+describe Github::DefaultUserScrappingFacade do
   subject(:facade){ described_class.new(link_shorten: link_shorten, web_scrapper: web_scrapper) }
 
   let(:link_shorten){ double(:link_shorten) }

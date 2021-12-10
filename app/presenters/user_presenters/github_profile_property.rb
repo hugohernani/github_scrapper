@@ -21,19 +21,11 @@ module UserPresenters
     attr_reader :github_profile
 
     def counter_message_for(counter_property)
-      message_for(counter_property, 'users.show.github_counter_text')
+      UserPresenters::Property.new(github_profile, counter_property).message(locale_path: 'helpers.property_counter')
     end
 
     def property_message_for(generic_property)
-      message_for(generic_property, 'users.show.github_property_text')
-    end
-
-    def message_for(github_propery_name, message_path)
-      profile_value = github_profile&.send(github_propery_name)
-
-      return UserPresenters::NullProperty.new(github_propery_name) unless profile_value
-
-      h.t(message_path, value: profile_value, type: github_propery_name.capitalize)
+      UserPresenters::Property.new(github_profile, generic_property).message
     end
   end
 end

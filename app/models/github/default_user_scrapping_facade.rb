@@ -1,5 +1,5 @@
 module Github
-  class UserScrappingFacade
+  class DefaultUserScrappingFacade
     def initialize(link_shorten:, web_scrapper:)
       @link_shorten = link_shorten
       @web_scrapper = web_scrapper

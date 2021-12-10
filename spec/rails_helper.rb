@@ -30,7 +30,6 @@ RSpec.configure do |config|
   config.example_status_persistence_file_path = Rails.root.join('status_persistence_file.txt').to_s
 
   config.include FactoryBot::Syntax::Methods
-  config.include ActiveJob::TestHelper, type: :job
 
   config.before(type: :system) do
     driven_by(:selenium_chrome_headless)

@@ -1,10 +1,7 @@
 require 'rails_helper'
 
-describe Github::UserUpdate, github_fake_response: true do
-  subject(:user_update_service){ described_class.new(new_user_form, user: user, link_shorten: mocked_shorten_link) }
-
-  let(:fake_short_url){ Faker::Internet.url(host: 'bit.ly') }
-  let(:mocked_shorten_link){ double(:mocked_shorten_link, generate: fake_short_url) }
+describe Github::UserUpdate, **Utils.mocked_server_flags do
+  subject(:user_update_service){ described_class.new(new_user_form, user: user) }
 
   let(:user){ create(:user, :with_github_profile) }
 
@@ -24,20 +21,24 @@ describe Github::UserUpdate, github_fake_response: true do
         .from(user.url).to(new_user_form.url)
     end
 
-    it 'updates github profile data on related user' do
-      github_profile = user.github_profile
+    context 'using active job' do
+      perform_enqueue_jobs
 
-      expect do
-        user_update_service.update
-        github_profile.reload
-      end.to change(github_profile, :username)
-        .and change(github_profile, :followers)
-        .and change(github_profile, :following)
-        .and change(github_profile, :stars)
-        .and change(github_profile, :contributions)
-        .and change(github_profile, :image_url)
-        .and change(github_profile, :organization)
-        .and change(github_profile, :localization)
+      it 'updates github profile data on related user' do
+        github_profile = user.github_profile
+
+        expect do
+          user_update_service.update
+          github_profile.reload
+        end.to change(github_profile, :username)
+          .and change(github_profile, :followers)
+          .and change(github_profile, :following)
+          .and change(github_profile, :stars)
+          .and change(github_profile, :contributions)
+          .and change(github_profile, :image_url)
+          .and change(github_profile, :organization)
+          .and change(github_profile, :localization)
+      end
     end
   end
 end

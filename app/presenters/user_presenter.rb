@@ -9,12 +9,14 @@ class UserPresenter < BasePresenter
 
   def initialize(db_user:)
     @user                    = db_user
-    @github_profile          = @user&.github_profile
+    @github_profile          = @user.github_profile
     @page_navigation         = UserPresenters::PageNavigation.new(db_user: db_user)
     @github_profile_property = UserPresenters::GithubProfileProperty.new(github_profile: @github_profile)
   end
 
   def github_username_message
+    return UserPresenters::NullProperty.new("username") unless github_profile
+
     h.t('users.show.github_username', username: github_profile&.username)
   end
 

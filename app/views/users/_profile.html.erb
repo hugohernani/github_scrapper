@@ -1,11 +1,12 @@
 <div class="card text-center">
-  <img class="card-img-top img-thumbnail profile-image mt-2" src="<%= user.github_image_url %>" width="50" height="200" alt="Card image cap">
+  <%= image_tag user.github_image_url, class: 'card-img-top img-thumbnail profile-image mt-2',
+                width: 50, height: 200, alt: t('users.show.profile_image') if user.github_image_url %>
   <div class='card-body'>
     <%= turbo_frame_tag "user_form", class: "card-body" do %>
       <h1 class="card-title"><%= user.name %></h1>
       <div class='profile-links d-inline-flex flex-column'>
         <%= primary_button(t('.github_profile'), url: user.url) %>
-        <%= link_to user.short_url, user.short_url, class: 'card-link' %>
+        <%= link_to_if user.short_url, user.short_url, user.short_url, class: 'card-link' %>
       </div>
     <% end %>
   </div>
