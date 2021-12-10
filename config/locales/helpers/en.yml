@@ -1,0 +1,5 @@
+en:
+  helpers:
+    property: "%{type}: %{value}"
+    property_counter: "%{value} %{type}"
+    null_property: "Missing %{property_type}"

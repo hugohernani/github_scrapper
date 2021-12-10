@@ -8,7 +8,7 @@ en:
       github_profile: Github Profile
       github_profile_details: Github Profile Details
       github_username: "%{username} (Username)"
-      github_property_text: "%{type}: %{value}"
-      github_counter_text: "%{value} %{type}"
+      profile_image: Github Profile Avatar
       last_updated_at: "%{last_update} (Last Updated)"
       last_syncronized_at: "%{last_update} (Last Syncronized)"
+      not_synced_yet: Profile Not Syncronized Yet

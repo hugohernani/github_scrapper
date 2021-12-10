@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
   def index
-    database_users = User.with_github_profile
-    @users         = UsersContainerPresenter.new(database_users)
-                                            .search(search_query: params[:q])
+    @users = UsersContainerPresenter.new(User.with_github_profile)
+                                    .search(search_query: params[:q])
   end
 
   def new
@@ -15,7 +14,7 @@ class UsersController < ApplicationController
     register_service = user_registration_service
 
     if @form.valid?
-      register_service.create
+      register_service.create(listeners: ::Users::TurboBroadcasting.new)
       redirect_to user_path(register_service.user), notice: t('.success')
     else
       @user = UserPresenter.new(db_user: User.new)
