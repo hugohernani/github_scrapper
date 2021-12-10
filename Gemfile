@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.2'
 
+gem 'bitly', '~> 2.0'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 # Use postgresql as the database for Active Record
@@ -34,6 +36,10 @@ gem 'sinatra', '~> 2.1.0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
+
+gem 'sidekiq', '~> 6.3'
+
+gem 'wisper', '~> 2.0'
 
 group :development, :test do
   gem 'dotenv-rails', '2.7.6'
@@ -73,5 +79,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-
-gem 'bitly', '~> 2.0'

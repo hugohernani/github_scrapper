@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="card-body">
+
+    <h3 class='text-center'><%= t('.github_profile_details') %></h3>
+    <ul class="list-group d-flex align-content-center justify-content-center flex-column">
+      <li class="list-group-item"><%= user.github_username_message %></li>
+      <li class="list-group-item"><%= user.github_followers_message %></li>
+      <li class="list-group-item"><%= user.github_following_message %></li>
+      <li class="list-group-item"><%= user.github_stars_message %></li>
+      <li class="list-group-item"><%= user.github_contributions_message %></li>
+      <li class="list-group-item"><%= user.github_organization %></li>
+      <li class="list-group-item"><%= user.github_localization %></li>
+    </ul>
+
+  </div>
+  <div class="card-footer d-flex justify-content-center align-items-center flex-column">
+    <div class='actions'>
+      <%= primary_button(t('helpers.buttons.syncronize'), url: user.page_navigation.refresh_profile_page_link, css_classes: ['card-link'], method: :post) %>
+    </div>
+    <small class="text-muted mt-3"><%= user.last_github_scrapping_update %></small>
+  </div>
+</div>

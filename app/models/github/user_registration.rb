@@ -1,46 +1,37 @@
 module Github
   class UserRegistration
+    include Github::UserScrappingEnqueuer
+    include ::SubscriptionListener
+
     attr_reader :user
 
-    def initialize(github_user_form,
+    def initialize(user_form,
                    link_shorten: Shortner::Bitly.new,
                    web_scrapper: WebScrapper::GithubProfile.new)
-      @github_user_form = github_user_form
-      @link_shorten     = link_shorten
-      @web_scrapper     = web_scrapper
+      @user_form    = user_form
+      @link_shorten = link_shorten
+      @web_scrapper = web_scrapper
     end
 
-    def create
-      @user     = persist_user
-      short_url = shorten_url
-      persist_short_url_on_user(@user.id, short_url)
-      webscrap_github_profile(@user.id)
+    def create(listeners: [])
+      @user = persist_user
+      subscribe(listeners: listeners, on_publisher: User)
+      enqueue_default_scrapping(link_shorten: link_shorten, web_scrapper: web_scrapper,
+                                target_url: user_form.url, user_id: @user.id)
     end
 
     private
 
-    attr_reader :github_user_form, :link_shorten, :web_scrapper
+    attr_reader :user_form, :link_shorten, :web_scrapper
 
     def persist_user
-      User.create(
-        name: github_user_form.name,
-        url: github_user_form.url
-      )
+      User.persist(user_form)
     end
 
-    def shorten_url
-      link_shorten.generate(url: github_user_form.url)
+    def subscribe_listeners(user)
+      listeners.each do |listener|
+        user.subscribe(listener)
+      end
     end
-
-    def persist_short_url_on_user(user_id, short_url)
-      User.add_short_url(user_id: user_id, short_url: short_url)
-    end
-
-    def webscrap_github_profile(user_id)
-      WebScrapper::GithubProfileLoader
-        .new(user_id: user_id, web_scrapper: web_scrapper)
-        .load_onto_user(url: github_user_form.url)
-    end
-
   end
 end

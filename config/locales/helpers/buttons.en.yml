@@ -1,6 +1,7 @@
 en:
   helpers:
     buttons:
+      new: New
       back: Back
       update: Update
       submit: Submit

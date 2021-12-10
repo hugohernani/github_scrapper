@@ -18,6 +18,14 @@ class UsersContainerPresenter < BasePresenter
     @users_presenters.each(&block)
   end
 
+  def size
+    @users_presenters.length
+  end
+
+  def create_user_link
+    new_user_path
+  end
+
   def search_link
     users_path
   end
