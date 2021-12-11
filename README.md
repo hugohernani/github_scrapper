@@ -38,6 +38,9 @@ If you are not using **dip**, you can use **docker-compose** commands as usual. 
 * Add github event listening **feature** so that system will be able to notify when a synchronization is required to be updated with github url
 * Improve web user interface (which includes improving navigability)
 * Add system wide logging
+* Improve testing to cover edge cases such as bad communication and add some stressing tests
+  ** Also add some system type tests
+* Add error handling for "Not Found" github url. It currently does not notify user of that. It scraps and provides missing data messages for each value
 * Add caching mechanism to avoid unnecessary external requests on shorten url service and scrapping github for same user
 * Add some database constraints such as uniqueness for github url
 * Add loading spinners of some sort to improve user experience on waiting for profile scrapping
