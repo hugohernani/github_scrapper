@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "user_profile", class: "card text-center" do %>
+<div class='card text-center'>
   <%= image_tag user.github_image_url, class: 'card-img-top img-thumbnail profile-image mt-2',
                 width: 50, height: 200, alt: t('users.show.profile_image') if user.github_image_url %>
   <div class='card-body'>
@@ -15,4 +15,4 @@
     </div>
     <small class="text-muted mt-3"><%= user.last_updated_at %></small>
   </div>
-<% end %>
+</div>
