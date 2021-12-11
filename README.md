@@ -36,10 +36,8 @@ If you are not using **dip**, you can use **docker-compose** commands as usual. 
 
 * Separate domain and architecture implementation
 * Add github event listening **feature** so that system will be able to notify when a synchronization is required to be updated with github url
-* Add Rate Limit API response
 * Improve web user interface (which includes improving navigability)
 * Add system wide logging
 * Add caching mechanism to avoid unnecessary external requests on shorten url service and scrapping github for same user
 * Add some database constraints such as uniqueness for github url
-* Improve user form validation
 * Add loading spinners of some sort to improve user experience on waiting for profile scrapping
