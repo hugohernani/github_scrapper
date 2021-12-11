@@ -14,7 +14,7 @@
 * $ `Enter the cloned project`
 * $ `cp .env.sample .env`
 * Adjust env environment settings accordingly
-* You can set USE_FAKE_BITLY environment variable to any thuthy value so that system will use a mock version of it through webmock setup
+* You can set USE_FAKE_BITLY environment variable to any truthy value so that system will use a mock version of it through webmock setup
 
 ## Running the project with docker
 
@@ -42,3 +42,4 @@ If you are not using **dip**, you can use **docker-compose** commands as usual. 
 * Add caching mechanism to avoid unnecessary external requests on shorten url service and scrapping github for same user
 * Add some database constraints such as uniqueness for github url
 * Improve user form validation
+* Add loading spinners of some sort to improve user experience on waiting for profile scrapping
