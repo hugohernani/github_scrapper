@@ -1,6 +1,6 @@
 module Shortner
   module BitlyErrors
-    class MissingBitlyApiToken < StandardError
+    class MissingApiToken < StandardError
       def initialize(message = 'Missing api token for Bitly api')
         super(message)
       end
