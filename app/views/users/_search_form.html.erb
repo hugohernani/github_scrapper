@@ -1,5 +1,5 @@
 <nav class="navbar navbar-light bg-light d-flex justify-content-between justify-items-center">
-  <%= primary_button(I18n.t('helpers.buttons.new'), url: @users.create_user_link, data: { turbo: false }) %>
+  <%= primary_button(I18n.t('helpers.buttons.new'), url: users.create_user_link, data: { turbo: false }) %>
 
   <%= form_with url: users.search_link, class: 'form-inline d-flex', method: :get do |f| %>
     <%= f.text_field :q, value: users.search_query %>
