@@ -17,7 +17,7 @@ module Shortner
 
     def default_bitly_api_wrapper
       bitly_api_token = ENV['BITLY_API_TOKEN']
-      raise Shortner::BitlyErrors::MissingBitlyApiToken if bitly_api_token.blank?
+      raise Shortner::BitlyErrors::MissingApiToken if bitly_api_token.blank?
 
       ::Bitly::API::Client.new(token: bitly_api_token)
     end
