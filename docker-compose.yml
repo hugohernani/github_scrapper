@@ -1,7 +1,7 @@
 version: '3'
 services:
   db:
-    image: postgres
+    image: postgres:15.5
     environment:
       POSTGRES_HOST: db
       POSTGRES_USER: github_scrapper
@@ -10,21 +10,14 @@ services:
       - ./tmp/db:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
-  webpack:
-    build: .
-    command: ./bin/webpack-dev-server
-    volumes:
-      - .:/myapp
-    ports:
-      - '3035:3035'
-    environment:
-      NODE_ENV: development
-      RAILS_ENV: development
-      WEBPACKER_DEV_SERVER_HOST: 0.0.0.0
+  redis:
+    image: redis:6.2-alpine
 
-  web:
-    command: rails server -b 0.0.0.0
+  app: &app
     build: .
+    stdin_open: true
+    env_file:
+      - .env
     environment:
       WEBPACKER_DEV_SERVER_HOST: webpack
       DATABASE_URL: db
@@ -35,6 +28,29 @@ services:
       - .:/myapp
     depends_on:
       - db
+
+  webpack:
+    <<: *app
+    build: .
+    command: ./bin/webpack-dev-server
+    ports:
+      - '3035:3035'
+    environment:
+      NODE_ENV: development
+      RAILS_ENV: development
+      WEBPACKER_DEV_SERVER_HOST: 0.0.0.0
+
+  sidekiq:
+    <<: *app
+    command: bundle exec sidekiq
+    depends_on:
+      - redis
+
+  web:
+    <<: *app
+    command: rails server -b 0.0.0.0
+    depends_on:
       - webpack
+      - sidekiq
     ports:
       - "3000:3000"

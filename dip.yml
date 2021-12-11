@@ -1,0 +1,37 @@
+version: '7.1'
+
+compose:
+  files:
+    - docker-compose.yml
+  project_name: github_scrapper
+
+interaction:
+  bundle:
+    description: Run Bundler commands
+    service: app
+    command: bundle
+
+  rake:
+    description: Run Rake commands
+    service: app
+    command: bundle exec rake
+    compose_run_options: [no-deps]
+
+  reset_db:
+    description: Run db rake commands to restart database
+    service: app
+    command: bundle exec rake db:drop db:create db:migrate db:seed
+
+  rspec:
+    description: Run Rspec commands
+    service: app
+    environment:
+      RAILS_ENV: test
+    command: bundle exec rspec
+
+provision:
+  - dip compose down --remove-orphans
+  - dip compose build
+  - dip bundle install
+  - dip reset_db
+  - dip compose up
