@@ -120,6 +120,7 @@ GEM
     faraday-patron (1.0.0)
     faraday-rack (1.0.0)
     ffi (1.15.4)
+    foreman (0.87.2)
     formatador (0.3.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
@@ -373,6 +374,7 @@ DEPENDENCIES
   dotenv-rails (= 2.7.6)
   factory_bot_rails (~> 6.2)
   faker (~> 2.19)
+  foreman (~> 0.87.2)
   guard-rspec (= 4.7.3)
   hotwire-rails (~> 0.1.3)
   jbuilder (~> 2.7)
@@ -403,7 +405,7 @@ DEPENDENCIES
   wisper (~> 2.0)
 
 RUBY VERSION
-   ruby 3.0.2p107
+   ruby 3.0.3p157
 
 BUNDLED WITH
-   2.2.26
+   2.2.32
