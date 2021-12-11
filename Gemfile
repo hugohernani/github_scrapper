@@ -39,6 +39,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'sidekiq', '~> 6.3'
 
+gem 'webmock', '~> 3.14.0'
 gem 'wisper', '~> 2.0'
 
 group :development, :test do
@@ -74,7 +75,6 @@ group :test do
   gem 'simplecov', '~> 0.21.2'
 
   gem 'webdrivers', '~> 5.0.0'
-  gem 'webmock', '~> 3.14.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
