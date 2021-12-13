@@ -3,7 +3,7 @@ module CustomMatchers
     extend RSpec::Matchers::DSL
 
     def user_table_row(page, user)
-      page.find(:css, "table.users-listing tbody tr##{user.id}")
+      page.find(:css, "table.users-listing tbody tr#user_#{user.id}")
     end
 
     matcher :have_action_buttons_on_user_row do |given_user|
@@ -30,7 +30,7 @@ module CustomMatchers
         expect(column).to have_link(I18n.t('helpers.buttons.delete'), href: "/users/#{user.id}")
       end
 
-      failure_message do |actual|
+      failure_message do |_actual|
         'expected that all action buttons were available'
       end
     end

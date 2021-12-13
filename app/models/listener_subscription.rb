@@ -18,7 +18,7 @@ class ListenerSubscription
   attr_reader :publisher, :listeners
 
   def already_added_listener?(incoming_listener)
-    publisher.any? do |listener|
+    publisher.listeners.any? do |listener|
       incoming_listener.is_a?(listener.class)
     end
   end

@@ -5,7 +5,10 @@ describe ListenerSubscription do
 
   let(:publisher) do
     Class.new do
-      include Wisper::Publisher
+      class << self
+        include Wisper::Publisher
+      end
+
     end
   end
 
