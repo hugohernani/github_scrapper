@@ -9,7 +9,6 @@
   <td><%= user.github_localization %></td>
   <td class='actions d-flex'>
     <%= primary_button(t('helpers.buttons.show'), url: user.page_navigation.user_link, css_classes: ['action-margin-link']) %>
-    <%= secondary_button(t('helpers.buttons.edit'), url: user.page_navigation.edit_user_link, css_classes: ['action-margin-link']) %>
     <%= danger_button(t('helpers.buttons.delete'), url: user.page_navigation.user_link, css_classes: ['action-margin-link'], alert_message: t('helpers.messages.confirm_question')) %>
   </td>
 </tr>
