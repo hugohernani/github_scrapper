@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  include RansackObjectForLowercase
 
   EVENTS = {
     'updated' => 'user_updated',

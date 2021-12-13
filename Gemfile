@@ -46,6 +46,7 @@ group :development, :test do
   gem 'dotenv-rails', '2.7.6'
 
   gem 'guard-rspec', '4.7.3'
+  gem 'pry-rails', '~> 0.3.9'
   gem 'rubocop-rails', '2.9.1'
   gem 'rubocop-rspec', '2.2.0'
 
@@ -64,7 +65,6 @@ group :development do
   gem 'rack-mini-profiler', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'pry-rails', '~> 0.3.9'
 end
 
 group :test do

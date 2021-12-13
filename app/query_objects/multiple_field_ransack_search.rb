@@ -13,7 +13,7 @@ class MultipleFieldRansackSearch
 
   def query_for_containing_fields(query, fields)
     fields.each_with_object({}) do |field, hash|
-      hash["#{field}_cont"] = query.downcase
+      hash["#{field}_i_cont"] = query.downcase
     end
   end
 end
