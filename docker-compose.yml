@@ -15,6 +15,7 @@ services:
 
   app: &app
     build: .
+    tty: true
     stdin_open: true
     env_file:
       - .env

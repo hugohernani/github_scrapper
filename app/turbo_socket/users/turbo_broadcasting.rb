@@ -7,8 +7,8 @@ module Users
 
     def user_profile_updated(data)
       user = UserPresenter.new(db_user: data.fetch(:user))
-      broadcast_onto_user_view(user)
       broadcast_onto_users_listing(user)
+      broadcast_onto_user_view(user)
     end
 
     private
