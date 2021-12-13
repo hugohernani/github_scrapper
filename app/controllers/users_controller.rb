@@ -37,7 +37,6 @@ class UsersController < ApplicationController
 
     if @form.valid?
       user_update_service(user, @form).update
-      redirect_to user_path(user), notice: t('.success')
     else
       render :new
     end

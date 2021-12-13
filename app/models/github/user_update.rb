@@ -18,6 +18,7 @@ module Github
                                   target_url: user_form.url, user_id: user.id)
       end
       User.update_from_form(user, user_form)
+      Users::EventNotification.notify_update(user_id: user.id)
     end
 
     private

@@ -1,5 +1,5 @@
 Rails.application.reloader.to_prepare do
-  ListenerSubscription.new(publisher: User, listeners: [
+  ListenerSubscription.new(publisher: Users::EventNotification, listeners: [
                              Users::TurboBroadcasting.new
                            ]).subscribe
 end

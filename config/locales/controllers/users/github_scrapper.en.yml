@@ -1,5 +1,4 @@
 en:
   users:
     github_scrapper:
-      create:
-        success: User Github Profile Was Successfully Fetched
+      success: User Github Profile Was Successfully Fetched

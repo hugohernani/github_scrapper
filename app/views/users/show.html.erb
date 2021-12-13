@@ -1,10 +1,5 @@
 <%= turbo_stream_from @user %>
-<%= turbo_frame_tag "user_details" do %>
-  <div class='actions text-end mt-3'>
-    <%= back_button(I18n.t('helpers.buttons.back'), url: @user.page_navigation.users_link, data: { turbo: false }) %>
-  </div>
-  <div class="card-group mt-3">
-    <%= render 'users/profile', user: @user %>
-    <%= render 'users/github_profile', user: @user %>
-  </div>
-<% end %>
+<div class='actions text-end mt-3'>
+  <%= back_button(I18n.t('helpers.buttons.back'), url: @user.page_navigation.users_link, data: { turbo: false }) %>
+</div>
+<%= render 'users/info', user: @user %>

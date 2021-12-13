@@ -11,11 +11,12 @@ describe Github::DefaultUserScrappingFacade do
     allow(link_shorten).to receive(:generate).and_return(short_url)
     allow(User).to receive(:add_short_url)
     allow(WebScrapper::GithubProfileLoader).to receive_message_chain(:new, :load_onto_user)
+    allow(Users::EventNotification).to receive(:notify_profile_update).with(user_id: be_a(Numeric))
   end
 
   it 'delegates shortening link to link_shorten' do
     url = Faker::Internet.url
-    facade.perform(target_url: url, user_id: nil)
+    facade.perform(target_url: url, user_id: 42)
 
     expect(link_shorten).to have_received(:generate).with(url: url)
   end
