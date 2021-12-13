@@ -2,7 +2,6 @@ class User < ApplicationRecord
   include RansackObjectForLowercase
 
   EVENTS = {
-    'registered' => 'user_registered',
     'updated' => 'user_updated',
     'profile_updated' => 'user_profile_updated'
   }.freeze
@@ -31,7 +30,8 @@ class User < ApplicationRecord
     def persist_github_profile(user_id:, profile:)
       user           = User.find(user_id)
       github_profile = user.github_profile || user.build_github_profile(user_id: user_id)
-      broadcast(User::EVENTS['profile_updated'], user: user) if persisted_github_profile(github_profile, profile)
+      persisted_github_profile(github_profile, profile)
+      broadcast(User::EVENTS['profile_updated'], user: user) if github_profile.persisted?
     end
 
     private

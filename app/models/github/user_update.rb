@@ -1,7 +1,6 @@
 module Github
   class UserUpdate
     include Github::UserScrappingEnqueuer
-    include ::SubscriptionListener
 
     def initialize(user_form,
                    user:,
@@ -13,9 +12,8 @@ module Github
       @web_scrapper = web_scrapper
     end
 
-    def update(listeners: [])
+    def update
       if user_requires_scrapping_updates?
-        subscribe(listeners: listeners, on_publisher: User)
         enqueue_default_scrapping(link_shorten: link_shorten, web_scrapper: web_scrapper,
                                   target_url: user_form.url, user_id: user.id)
       end

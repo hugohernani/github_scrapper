@@ -1,7 +1,6 @@
 module Github
   class UserRegistration
     include Github::UserScrappingEnqueuer
-    include ::SubscriptionListener
 
     attr_reader :user
 
@@ -13,9 +12,8 @@ module Github
       @web_scrapper = web_scrapper
     end
 
-    def create(listeners: [])
+    def create
       @user = persist_user
-      subscribe(listeners: listeners, on_publisher: User)
       enqueue_default_scrapping(link_shorten: link_shorten, web_scrapper: web_scrapper,
                                 target_url: user_form.url, user_id: @user.id)
     end
@@ -26,12 +24,6 @@ module Github
 
     def persist_user
       User.persist(user_form)
-    end
-
-    def subscribe_listeners(user)
-      listeners.each do |listener|
-        user.subscribe(listener)
-      end
     end
   end
 end
