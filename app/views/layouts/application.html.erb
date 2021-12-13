@@ -13,7 +13,8 @@
 
   <body class='container'>
     <main>
-      <div class="flash-container">
+      <%#= yield :flash_messages_stream %>
+      <div id='flash-messages' class="flash-container">
         <%= render 'layouts/flash_messages'%>
       </div>
       <%= yield %>

@@ -6,7 +6,7 @@ module Users
       WebScrapper::GithubProfileLoader.new(user_id: user.id)
                                       .load_onto_user(url: user.url)
 
-      redirect_to user_path(user), notice: t('.success')
+      redirect_to user_path(user), notice: t('users.github_scrapper.success')
     end
   end
 end

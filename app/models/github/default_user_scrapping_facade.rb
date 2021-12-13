@@ -8,6 +8,7 @@ module Github
     def perform(target_url:, user_id:)
       persist_short_url_on_user(target_url, user_id)
       webscrap_github_profile(target_url, user_id)
+      Users::EventNotification.notify_profile_update(user_id: user_id)
     end
 
     private

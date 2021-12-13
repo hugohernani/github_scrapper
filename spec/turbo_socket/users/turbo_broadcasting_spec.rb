@@ -9,7 +9,7 @@ describe Users::TurboBroadcasting do
     it "receives incoming user on #{broadcast_method} and delegates broadcast to Turbo" do
       expect do
         turbo_listener.send(broadcast_method, user: user)
-      end.to have_broadcasted_to(user.to_gid_param).from_channel(Turbo::StreamsChannel)
+      end.to have_broadcasted_to(user.to_gid_param).from_channel(Turbo::StreamsChannel).exactly(2).times
     end
   end
 

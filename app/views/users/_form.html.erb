@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "user_input" do %>
-  <%= form_with model: user_form, url: user_submit_path, method: submit_method, data: { turbo: false } do |form| %>
+  <%= form_with model: user_form, url: user_submit_path, method: submit_method, data: { turbo: turbo_enabled, frame: 'top' } do |form| %>
     <%= render 'layouts/errors', resource: user_form %>
     <div class='form-group row mb-2'>
       <div class='col-sm-12'>
